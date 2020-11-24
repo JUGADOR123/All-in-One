@@ -1,9 +1,9 @@
 {
     "name": "AllinOne",
     "author": "Jugador123",
-    "version": "1.1.6",
+    "version": "1.1.7",
     "license": "MIT",
-    "lateExecute":true,
+    "lateExecute":false,
     "src": {
         "Jugador123-AllinOne": "src/aio.js"
     }
