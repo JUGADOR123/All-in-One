@@ -1,9 +1,9 @@
 Items:
-	Weight: 					true/false			if true removes all weight from items
+	noWeight: 					true/false			if true removes all weight from items
 	stack:						(any number) 		this is the max amount of bullets in a single slot
 	Armor&rigs 					true/false			if true allows to have body armor and armored rigs at the same time
 	money						(any number)		the max amount of money in a single stack
-	itemrestrictions 			true/false			if false removes all item restrictions from secure containers
+	noitemrestrictions 			true/false			if true removes all item restrictions from secure containers
 
 	
 hideout:
@@ -15,7 +15,7 @@ hideout:
 player:
 	allquestavailable			true/false			if true all quests become available to start
 	clothesallsides				true/false			if ture all clothes become available to any faction
-	freeclothes					true/false			if true all clothes become free (currently not working)
+	freeclothes					true/false			if true all clothes become free
 	noscavtimer					true/false			if true scav gameplay has no time cooldown
 	enableSkillMultiplier		true/false			if true enables custom skill multiplier
 	skillmultiplier				(any number)		skill and weapon skill multiplier
