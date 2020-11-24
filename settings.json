@@ -1,18 +1,32 @@
 {
-    "items":{
-        "Weight": true,  
+    "items": {
+        "Weight": true,
         "Stack": 200,
-        "Armor&Rigs":true,
-        "Money":1000000,
-        "ItemRestrictions":false,
-        "inRaidModding":true     
+        "Armor&Rigs": true,
+        "Money": 1000000,
+        "ItemRestrictions": false,
+        "inRaidModding": true
     },
-    "hideout":{
-        "buildTime":true,
-        "fastCraft":true,
-        "fastScavCase":true
+    "hideout": {
+        "buildTime": true,
+        "fastCraft": true,
+        "fastScavCase": true
     },
-    "player":{
-        "allQuestAvailable":true
+    "player": {
+        "allQuestAvailable": true,
+        "ClothesAllSides": true,
+        "freeClothes": true,
+        "noScavTimer": true,
+        "skillMultiplier": 30,
+        "fleaLevel": 1,
+        "skillFatigue": false,
+        "maxStamina": 200
+    },
+    "gameplay": {
+        "globalLootModifier": 500,
+        "allExtracts": true,
+        "noExitRestrictions": true,
+        "bossChance": 75,
+        "raidTimer": 249
     }
 }
