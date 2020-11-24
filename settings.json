@@ -10,7 +10,8 @@
     "hideout": {
         "buildTime": true,
         "fastCraft": true,
-        "fastScavCase": true
+        "fastScavCase": true,
+        "fastBitcoin":false
     },
     "player": {
         "allQuestAvailable": true,
@@ -23,7 +24,7 @@
         "maxStamina": 200
     },
     "gameplay": {
-        "globalLootModifier": 500,
+        "globalLootModifier": 1,
         "allExtracts": true,
         "noExitRestrictions": true,
         "bossChance": 75,

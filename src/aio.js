@@ -57,17 +57,24 @@ exports.mod = () => {
         base = json.parse(json.read(db.user.cache.hideout_production))
         for (let file in base.data) {
             let fileData = base.data[file];
-            fileData.productionTime = 10;
+            if (fileData.areaType != 20 && settings.hideout.fastBitcoin==false) {
+                fileData.productionTime = 10;
+            } else {
+                fileData.productionTime = 10; 
+            }
+               
+            
         }
         json.write(db.user.cache.hideout_production, base);
     }
-    //Hideout Fast Scav Case (not working)
+    //Hideout Fast Scav Case 
     if (settings.hideout.fastScavCase == true) {
         base = json.parse(json.read(db.user.cache.hideout_scavcase))
         for (let file in base.data) {
             let filedata = base.data[file];
             filedata.productionTime = 10;
         }
+        json.write(db.user.cache.hideout_scavcase, base);
     }
     logger.logInfo("Aio: Player Related settings loading: ")
     //All Quests 
@@ -124,12 +131,14 @@ exports.mod = () => {
     if (settings.player.noScavTimer == true) {
         let base = json.parse(json.read(db.cacheBase.globals))
         base.data.config.SavagePlayCooldown = 1;
+        json.write(db.cacheBase.globals, base);
     }
     //Weapon and Skill experience multiplier (somewhat working? need further testing)
     if (settings.player.skillMultiplier > 1) {
         let base = json.parse(json.read(db.cacheBase.globals))
         base.data.config.SkillProgressRate = settings.player.skillMultiplier;
         base.data.config.WeaponSkillProgressRate = settings.player.skillMultiplier;
+        json.write(db.cacheBase.globals, base);
     }
     //Minium Flea level 
     if (settings.player.fleaLevel == true) {
@@ -157,7 +166,7 @@ exports.mod = () => {
         json.write(db.cacheBase.globals, base);
     }
     //Loot Modifier (doesnt seem to be working)
-    if (settings.gameplay.globalLootModifier >= 1) {
+    if (settings.gameplay.globalLootModifier > 0) {
         let base = json.parse(json.read(db.cacheBase.globals))
         base.data.GlobalLootChanceModifier = settings.gameplay.globalLootModifier;
         json.write(db.cacheBase.globals, base);
