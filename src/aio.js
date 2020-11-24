@@ -1,8 +1,9 @@
 exports.mod = () => {
-    logger.logInfo("[MOD] All in One");
+    logger.logInfo("[Mod] All in One Enhanced")
     let settings = require("../settings.json");
 
     //Item Related settings:
+    logger.logInfo("Aio: Item Related settings loading: ")
     for (let item in global._Database.items) {
         let data = global._Database.items[item];
         //Remove Weight
@@ -14,7 +15,7 @@ exports.mod = () => {
         if (data._name.includes("patron") && !data._name.includes("40x46")) {
             data._props.StackMaxSize = settings.items.Stack;
         }
-        //Allow Armored rigs with armor (further investigation)
+        //Allow Armored rigs with armor
         if (settings.items["Armor&Rigs"] == true) {
             if (data._parent === "5448e5284bdc2dcb718b4567") {
                 data._props.BlocksArmorVest = false;
@@ -37,31 +38,157 @@ exports.mod = () => {
 
         global._Database.items[item] = data;
     }
-    //Hideout Related
-    //Upgrading and building hideout timer
-    for (let hbuild in global._Database.hideout_areas) {
-        let hdata = global._Database.hideout_areas[hbuild];
-        if (settings.hideout.buildTime == true) {
-            for (let x in hdata.stages) {
-                hdata.stages[x].constructionTime = 5
+    logger.logInfo("Aio: Hideout Related settings loading: ")
+    //Hideout build timers
+    if (settings.hideout.buildTime === true) {
+        base = json.parse(json.read(db.user.cache.hideout_areas))
+        for (let file in base.data) {
+            let filedata = base.data[file];
+            for (let stage in filedata.stages) {
+                filedata.stages[stage].constructionTime = 10;
+            }
+        }
+        json.write(db.user.cache.hideout_areas, base);
+    }
+    //Hideout Fast Craft
+    if (settings.hideout.fastCraft == true) {
+        base=json.parse(json.read(db.user.cache.hideout_production))
+        for (let file in base.data) {
+            let fileData = base.data[file];
+            fileData.productionTime = 10;
+        }
+        json.write(db.user.cache.hideout_production, base); 
+    }
+    //Hideout Fast Scav Case
+    if (settings.hideout.fastScavCase == true) {
+        base = json.parse(json.read(db.user.cache.hideout_scavcase))
+        for (let file in base.data) {
+            let filedata = base.data[file];
+            filedata.productionTime = 10;
+        }
+    }
+    logger.logInfo("Aio: Player Related settings loading: ")
+    //All Quests
+    if (settings.player.allQuestAvailable == true) {
+        base = json.parse(json.read(db.user.cache.quests))
+        for (let file in base.data) {
+            let fileData = base.data[file]
+            fileData.conditions.AvailableForStart = [
+                {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "1",
+                        "index": 0,
+                        "parentId": "",
+                        "id": "Jugador-QuestID" 
+                    }
+                }
+            ]
+        }
+        json.write(db.user.cache.quests, base);
+    }
+    //All clothes
+    if (settings.player.ClothesAllSides == true) {
+        base = json.parse(json.read(db.user.cache.customization))
+        for (let file in base.data) {
+            let fileData = base.data[file]
+            fileData._props.Side = ["Savage", "Bear", "Usec"];
+            base.data[file] = fileData;
+        }
+
+        json.write(db.user.cache.customization, base);
+    }
+    //Clothes are Free
+    if (settings.player.freeClothes == true) {
+        for (let trader in db.assort) {
+            if ("customization" in db.assort[trader]) {
+                let base = json.parse(json.read(db.user.cache[`customization_${trader}`]));
+                for (let file in base) {
+                    let fileData = base[file]
+                    fileData.requirements.loyaltyLevel = 1;
+                    fileData.requirements.profileLevel = 1;
+                    fileData.requirements.standing = 0;
+                    fileData.requirements.skillRequirements = [];
+                    fileData.requirements.questRequirements = [];
+                    fileData.requirements.itemRequirements = [];
+                }
+                json.write(db.user.cache[`customization_${trader}`], base);
             }
         }
     }
-    //Hideout crafting
-    for (let hcraft in global._Database.hideout_production) {
-        let cdata = global._Database.hideout_production[hcraft];
-        if (settings.hideout.buildTime == true) {
-            if (cdata.continious === false) {
-                cdata.productionTime = 10;
+    logger.logInfo("Aio: Gameplay related Settings loading...")
+    //Scav timer
+    if (settings.player.noScavTimer == true) {
+        let base = json.parse(json.read(db.cacheBase.globals))
+        base.data.config.SavagePlayCooldown = 1;
+    }
+    //Weapon and Skill experience multiplier
+    if (settings.player.skillMultiplier >= 1) {
+        let base = json.parse(json.read(db.cacheBase.globals))
+        base.data.config.SkillProgressRate = settings.player.skillMultiplier;
+        base.data.config.WeaponSkillProgressRate = settings.player.skillMultiplier;
+    }
+    //Minium Flea level
+    if (settings.player.fleaLevel >= 1) {
+        let base = json.parse(json.read(db.cacheBase.globals))
+        base.data.config.RagFair.minUserLevel = settings.player.fleaLevel;
+    }
+    //Enable and disable skill fatigue
+    if (settings.player.skillFatigue == false) {
+        let base = json.parse(json.read(db.cacheBase.globals))
+        base.data.SkillMinEffectiveness = 1;
+        base.data.SkillFatiguePerPoint = 0;
+        base.data.SkillFreshEffectiveness = 1.5;
+    }
+    //Max Stamina
+    if (settings.player.maxStamina <= 100 ) {
+        let base = json.parse(json.read(db.cacheBase.globals))
+        base.data.config.Stamina.Capacity = settings.player.maxStamina;
+    } else if (settings.player.maxStamina > 100) {
+        let base = json.parse(json.read(db.cacheBase.globals))
+        base.data.config.Stamina.Capacity =100;
+        base.data.config.Stamina.BaseRestorationRate = 500;
+    }
+    //Loot Modifier
+    if (settings.gameplay.globalLootModifier >= 1) {
+        let base = json.parse(json.read(db.cacheBase.globals))
+        base.data.GlobalLootChanceModifier = settings.gameplay.globalLootModifier;
+    }
+    //All extracts
+    if (settings.gameplay.allExtracts == true) {
+        let base = json.readParsed(db.user.cache.locations)
+        for (let map in base) {
+            for (let exit in base[map].exits) {
+                base[map].exits[exit].Chance = 100;
             }
         }
     }
-    ///ScavCase Timer
-    for (let scav in global._Database.hideout_scavcase) {
-        let scavdata = global._Database.hideout_scavcase[scav];
-        if (settings.hideout.fastScavCase == true) {
-            scavdata.productionTime = 15;
-            
+    //No extract restrictions
+    if (settings.gameplay.noExitRestrictions == true) {
+        let base = json.readParsed(db.user.cache.locations)
+        for (let map in base) {
+            for (let exit in base[map].exits) {
+                base[map].exits[exit].ExfiltrationType = "Individual"
+                base[map].exits[exit].PassageRequirement = "None"
+                base[map].exits[exit].RequirementTip = ""
+                base[map].exits[exit].Count = 0
+            }
+        }
+    }
+    //Boss spawn chance
+    if (settings.gameplay.bossChance >= 1) {
+        let base = json.readParsed(db.user.cache.locations)
+        for (let map in base) {
+            base[map].BossLocationSpawn.BossChance = settings.gameplay.bossChance
+        }
+    }
+    //Longer raids
+    if (settings.gameplay.raidTimer >= 60) {
+        let base = json.readParsed(db.user.cache.locations)
+        for (let map in base) {
+            base[map].exit_access_time = settings.gameplay.raidTimer
+            base[map].escape_time_limit = settings.gameplay.raidTimer
         }
     }
 
