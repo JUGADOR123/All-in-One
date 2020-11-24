@@ -4,8 +4,7 @@
         "Stack": 200,
         "Armor&Rigs": true,
         "Money": 1000000,
-        "ItemRestrictions": false,
-        "inRaidModding": true
+        "ItemRestrictions": false
     },
     "hideout": {
         "buildTime": true,
@@ -18,15 +17,16 @@
         "ClothesAllSides": true,
         "freeClothes": true,
         "noScavTimer": true,
+        "enableskillMultiplier":true,
         "skillMultiplier": 30,
         "fleaLevel": true,
-        "skillFatigue": false,
-        "maxStamina": 200
+        "infiniteStamina":true
     },
     "gameplay": {
         "allExtracts": true,
         "noExitRestrictions": true,
         "bossChance": 75,
+        "enablelongerraids":true,
         "raidTimer": 249
     },
     "loot": {
