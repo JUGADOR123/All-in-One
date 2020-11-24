@@ -1,0 +1,18 @@
+{
+    "items":{
+        "Weight": true,  
+        "Stack": 200,
+        "Armor&Rigs":true,
+        "Money":1000000,
+        "ItemRestrictions":false,
+        "inRaidModding":true     
+    },
+    "hideout":{
+        "buildTime":true,
+        "fastCraft":true,
+        "fastScavCase":true
+    },
+    "player":{
+        "allQuestAvailable":true
+    }
+}

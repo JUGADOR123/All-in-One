@@ -1,0 +1,10 @@
+{
+    "name": "AllinOne",
+    "author": "Jugador123",
+    "version": "1.0.0",
+    "license": "MIT",
+    "lateExecute":true,
+    "src": {
+        "Jugador123-AllinOne": "src/aio.js"
+    }
+}
