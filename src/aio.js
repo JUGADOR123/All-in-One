@@ -109,6 +109,7 @@ exports.mod = () => {
         json.write(db.user.cache.customization, base);
     }
     //Clothes are Free (not working)
+    //needs rewrite
     if (settings.player.freeClothes == true) {
         for (let trader in db.assort) {
             if ("customization" in db.assort[trader]) {
@@ -128,12 +129,14 @@ exports.mod = () => {
     }
     logger.logInfo("Aio: Gameplay related Settings loading...")
     //Scav timer (cannot test)
+    //needs rewrite
     if (settings.player.noScavTimer == true) {
         let base = json.parse(json.read(db.cacheBase.globals))
         base.data.config.SavagePlayCooldown = 1;
         json.write(db.cacheBase.globals, base);
     }
     //Weapon and Skill experience multiplier (somewhat working? need further testing)
+    //needs rewrite
     if (settings.player.skillMultiplier > 1) {
         let base = json.parse(json.read(db.cacheBase.globals))
         base.data.config.SkillProgressRate = settings.player.skillMultiplier;
@@ -145,16 +148,22 @@ exports.mod = () => {
         let base = json.parse(json.read(db.cacheBase.globals))
         base.data.config.RagFair.minUserLevel = 1;
         json.write(db.cacheBase.globals, base);
+    } else {
+        let base = json.parse(json.read(db.cacheBase.globals))
+        base.data.config.RagFair.minUserLevel = 10;
+        json.write(db.cacheBase.globals, base);
+        
     }
     //Enable and disable skill fatigue (not working)
     if (settings.player.skillFatigue == false) {
         let base = json.parse(json.read(db.cacheBase.globals))
-        base.data.SkillMinEffectiveness = 2;
+        base.data.SkillMinEffectiveness = 0;
         base.data.SkillFatiguePerPoint = 0;
         base.data.SkillFreshEffectiveness = 10;
         json.write(db.cacheBase.globals, base);
     }
     //Max Stamina
+    
     if (settings.player.maxStamina < 100) {
         let base = json.parse(json.read(db.cacheBase.globals))
         base.data.config.Stamina.Capacity = settings.player.maxStamina;
@@ -167,9 +176,11 @@ exports.mod = () => {
     }
     //Loot Modifier (doesnt seem to be working)
     if (settings.gameplay.globalLootModifier > 0) {
-        let base = json.parse(json.read(db.cacheBase.globals))
-        base.data.GlobalLootChanceModifier = settings.gameplay.globalLootModifier;
-        json.write(db.cacheBase.globals, base);
+        let base = json.parse(json.read(db.user.cache.locations))
+        for (let map in base) {
+            base[map].GlobalLootChanceModifier = settings.gameplay.globalLootModifier;
+        }
+        json.write(db.user.cache.locations, base);
     }
     //All extracts
     if (settings.gameplay.allExtracts == true) {
@@ -195,11 +206,14 @@ exports.mod = () => {
         json.write(db.user.cache.locations, base);
     }
     //Boss spawn chance (working? need further testing)
-    if (settings.gameplay.bossChance >= 1) {
+    if (settings.gameplay.bossChance > 0) {
         let base = json.readParsed(db.user.cache.locations)
         for (let map in base) {
             base[map].BossLocationSpawn.BossChance = settings.gameplay.bossChance
         }
+        json.write(db.user.cache.locations, base);
+    } else {
+        base[map].BossLocationSpawn.BossChance = 0;
         json.write(db.user.cache.locations, base);
     }
     //Longer raids
