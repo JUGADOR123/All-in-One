@@ -1,21 +1,24 @@
 {
     "name": "AllinOne",
     "author": "Jugador123",
-    "version": "2.0.1",
+    "version": "2.0.3",
     "license": "MIT",
+        "autoUpdate": true,
+        "checkUpdateUrl": "https://raw.githubusercontent.com/JUGADOR123/All-in-One/master/updater.json",
     "src": {
-        "src/late/allextracts.js": "TamperModLoad",
-        "src/late/noextractres.js":"TamperModLoad",
-        "src/late/quests.js":"TamperModLoad",
-        "src/late/timer.js":"TamperModLoad",
-        "Src/late/boss.js":"TamperModLoad",
-        "src/late/clothes.js":"TamperModLoad",
-        "src/late/hideout.js":"TamperModLoad",
-        "src/late/items.js":"TamperModLoad",
-        "src/early/scav.js":"TamperModLoad",
-        "src/early/skills.js":"TamperModLoad",
-        "src/early/stamina.js":"TamperModLoad",
-        "src/early/flea.js":"TamperModLoad",
-        "src/early/loot.js":"TamperModLoad"
+        "src/flea.js":"TamperModLoad",
+        "src/clothes.js":"TamperModLoad",
+        "src/boss.js":"TamperModLoad",
+        "src/allextracts":"TamperModLoad",
+        "src/timer.js":"TamperModLoad",
+        "src/stamina.js":"TamperModLoad",
+        "src/skills.js":"TamperModLoad",
+        "src/scav.js":"TamperModLoad",
+        "src/quests.js":"TamperModLoad",
+        "src/noextractres.js":"TamperModLoad",
+        "src/loot.js":"TamperModLoad",
+        "src/items.js":"TamperModLoad",
+        "src/hideout.js":"TamperModLoad",
+        "src/gameplay.js":"TamperModLoad"
     }
 }
