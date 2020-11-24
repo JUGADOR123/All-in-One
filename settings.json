@@ -11,7 +11,7 @@
         "buildTime": true,
         "fastCraft": true,
         "fastScavCase": true,
-        "fastBitcoin":false
+        "fastBitcoin": false
     },
     "player": {
         "allQuestAvailable": true,
@@ -19,15 +19,26 @@
         "freeClothes": true,
         "noScavTimer": true,
         "skillMultiplier": 30,
-        "fleaLevel":true,
+        "fleaLevel": true,
         "skillFatigue": false,
         "maxStamina": 200
     },
     "gameplay": {
-        "globalLootModifier": 1,
         "allExtracts": true,
         "noExitRestrictions": true,
         "bossChance": 75,
         "raidTimer": 249
+    },
+    "loot": {
+        "betterloot": true,
+        "globalLootModifier": 20,
+        "bigmap": 10000,
+        "factory4_day": 1000,
+        "factory4_night": 1000,
+        "interchange": 25000,
+        "laboratory": 10000,
+        "rezervbase": 30000,
+        "shoreline": 15000,
+        "woods": 5000
     }
 }

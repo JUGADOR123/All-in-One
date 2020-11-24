@@ -1,10 +1,21 @@
 {
     "name": "AllinOne",
     "author": "Jugador123",
-    "version": "1.1.8",
+    "version": "2.0.0",
     "license": "MIT",
-    "lateExecute":true,
     "src": {
-        "Jugador123-AllinOne": "src/aio.js"
+        "src/late/allextracts.js": "TamperModLoad",
+        "src/late/noextractres.js":"TamperModLoad",
+        "src/late/quests.js":"TamperModLoad",
+        "src/late/timer.js":"TamperModLoad",
+        "Src/late/boss.js":"TamperModLoad",
+        "src/late/clothes.js":"TamperModLoad",
+        "src/late/hideout.js":"TamperModLoad",
+        "src/late/items.js":"TamperModLoad",
+        "src/early/scav.js":"TamperModLoad",
+        "src/early/skills.js":"TamperModLoad",
+        "src/early/stamina.js":"TamperModLoad",
+        "src/early/flea.js":"TamperModLoad",
+        "src/early/loot.js":"TamperModLoad"
     }
 }
