@@ -18,7 +18,7 @@
         "freeClothes": true,
         "noScavTimer": true,
         "skillMultiplier": 30,
-        "fleaLevel": 1,
+        "fleaLevel":true,
         "skillFatigue": false,
         "maxStamina": 200
     },
