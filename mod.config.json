@@ -4,7 +4,7 @@
     "version": "2.0.3",
     "license": "MIT",
         "autoUpdate": true,
-        "checkUpdateUrl": "https://raw.githubusercontent.com/JUGADOR123/All-in-One/master/updater.json",
+        "checkUpdateUrl": "https://raw.githubusercontent.com/JUGADOR123/All-in-One/main/updater.json",
     "src": {
         "src/flea.js":"TamperModLoad",
         "src/clothes.js":"TamperModLoad",
