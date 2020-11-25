@@ -1,6 +1,12 @@
 # All-in-One
 All in one mod for Jet 12.8 and forwards
 
+25-now-2020 Updated 2.0.5
+
+	-fixed yet another setting getting deleted
+
+	-fixed bullet stacking not working
+
 25-nov-2020 Update 2.0.4
 	
 	-hotfix for loot not appearing at all
