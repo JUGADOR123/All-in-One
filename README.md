@@ -1,7 +1,13 @@
 # All-in-One
 All in one mod for Jet 12.8 and forwards
 
-24-nov2020 Update 2.0.3
+25-nov-2020 Update 2.0.4
+	
+	-hotfix for loot not appearing at all
+
+	-hotfix for no weight not working
+
+24-nov-2020 Update 2.0.3
 
 	-no item restrictions now allows you to bring any case to raid
 	
