@@ -5,7 +5,7 @@ exports.mod = () => {
     base.trading.insureReturnChance = settings.player.insureReturnChance;
     base.locationloot.containers.ChanceForEmpty = settings.loot.chanceforemptycontainers;
     base.locationloot.containers.ChanceToSpawnNextItem = settings.loot.chancetospawnnextitem;
-    base.locationloot.containers.AttemptsToPlaceLoot = settings.AttemptsToPlaceLoot;
+    base.locationloot.containers.AttemptsToPlaceLoot = settings.loot.attemptstoplaceloot;
     base.locationloot.allowLootOverlay = settings.loot.allowlootoverlay;
     fileIO.write(db.user.configs.gameplay, base);
 

@@ -20,7 +20,7 @@ exports.mod = () => {
             }
             //Bullet Stacks
             if (base.data[item]._name.includes("patron") && !base.data[item]._name.includes("40x46")) {
-                base.data[item].StackMaxSize = settings.items.Stack;
+                base.data[item]._props.StackMaxSize = settings.items.Stack;
             }
             //Remove Item Restrictions
             if (settings.items.noItemRestrictions == true) {
