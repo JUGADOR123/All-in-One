@@ -3,7 +3,7 @@ exports.mod = () => {
     if (settings.gameplay.bossChance > 0) {
         let base = fileIO.readParsed(db.user.cache.locations)
         for (let map in base) {
-            base[map].BossLocationSpawn.BossChance = settings.gameplay.bossChance
+            base[map].base.BossLocationSpawn.BossChance = settings.gameplay.bossChance
         }
         fileIO.write(db.user.cache.locations, base);
     }
