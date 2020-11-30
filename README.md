@@ -1,6 +1,15 @@
 # All-in-One
 All in one mod for Jet 12.8 and forwards
 
+30-nov-2020 Update 2.0.7
+
+	-fixed extended raids not working
+	-Changed some modules from TamperMoadLoad to CacheModLoad
+
+26-nov-2020 Update 2.0.6
+	
+	-Support for server 1.0.3 thanks to Chomp
+
 25-now-2020 Updated 2.0.5
 
 	-fixed yet another setting getting deleted
