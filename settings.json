@@ -29,7 +29,7 @@
         "noExitRestrictions": true,
         "bossChance": 75,
         "enablelongerraids":true,
-        "raidTimer": 249
+        "raidTimer": 420
     },
     "loot": {
         "betterloot": true,
