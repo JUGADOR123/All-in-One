@@ -1,7 +1,7 @@
 {
     "name": "AllinOne",
     "author": "Jugador123",
-    "version": "2.0.7",
+    "version": "2.0.8",
     "license": "MIT",
         "autoUpdate": true,
         "checkUpdateUrl": "https://raw.githubusercontent.com/JUGADOR123/All-in-One/main/updater.json",
