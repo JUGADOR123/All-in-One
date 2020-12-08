@@ -10,7 +10,7 @@ exports.mod = () => {
                 file[map].base.exits[exit].Count = 0
             }
         }
-        fileIO.write(db.user.cache.locations, base);
+        fileIO.write(db.user.cache.locations, file);
         logger.logSuccess("[Mod Aio] Restrictions have been removed");
     }
 }
