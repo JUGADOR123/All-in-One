@@ -18,7 +18,6 @@ exports.mod = () => {
             ]
         }
         fileIO.write(db.user.cache.quests, base);
+        logger.logSuccess("[Mod Aio] All quests have been Added");
     }
-    logger.logSuccess("[Mod Aio] All quests have been Added");
-
 }

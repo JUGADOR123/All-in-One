@@ -20,5 +20,4 @@ exports.mod = () => {
         base.config.SkillFatiguePerPoint = 0.5;
         fileIO.write(db.cacheBase.globals, base);
     }
-
 }

@@ -28,9 +28,7 @@ exports.mod = () => {
                 }
                 fileIO.write(db.assort[base].suits, trader);
             }
-        }
-        
+        } 
         logger.logSuccess("[Mod Aio] All clothes are now free ");
     }
-
 }

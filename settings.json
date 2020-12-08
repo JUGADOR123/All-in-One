@@ -22,7 +22,7 @@
         "fleaLevel": true,
         "fleapricemultiplier":4,
         "insureReturnChance": 70,
-        "infiniteStamina":false
+        "infiniteStamina":true
     },
     "gameplay": {
         "allExtracts": true,

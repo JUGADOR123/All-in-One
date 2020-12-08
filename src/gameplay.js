@@ -12,5 +12,4 @@ exports.mod = () => {
     logger.logSuccess("[Mod Aio] Flea market multiplier updated to: "+settings.player.fleapricemultiplier);
     logger.logSuccess("[Mod Aio] Insurance return chance has been updated to: " + settings.player.insureReturnChance);
     logger.logSuccess("[Mod Aio] Loot Settings successfully updated")
-
 }
