@@ -2,7 +2,7 @@ exports.mod = () => {
     let settings = require("../settings.json");
     base = fileIO.readParsed(db.user.cache.items);
     for (let item in base.data) {
-        
+
         if (base.data[item]._type != "Node") {
             //Removes weight
             if (settings.items.noWeight == true) {
@@ -28,13 +28,8 @@ exports.mod = () => {
                     base.data[item]._props.Grids[0]._props.filters = [];
                 }
             }
-
-
         }
-
-
     }
     fileIO.write(db.user.cache.items, base);
     logger.logSuccess("[Mod Aio] Item related Settings successfully applied")
-    
 }

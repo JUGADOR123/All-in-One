@@ -6,7 +6,6 @@ exports.mod = () => {
         base.config.SavagePlayCooldownNdaFree = 0;
         base.config.SavagePlayCooldownDevelop = 0;
         fileIO.write(global.db.cacheBase.globals, base);
+        logger.logSuccess("[Mod Aio] Scav Timers have been removed");
     }
-    logger.logSuccess("[Mod Aio] Scav Timers have been removed");
-
 }

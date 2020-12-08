@@ -10,8 +10,5 @@ exports.mod = () => {
         let base = fileIO.readParsed(db.cacheBase.globals);
         base.config.RagFair.minUserLevel = 10;
         fileIO.write(db.cacheBase.globals, base);
-
     }
-    
-
 }
