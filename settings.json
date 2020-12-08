@@ -46,5 +46,9 @@
         "chanceforemptycontainers":15,
         "chancetospawnnextitem":70,
         "attemptstoplaceloot":50
+    },
+    "weather": {
+        "changeTimeAcceleration": true,
+        "acceleration": 3
     }
 }

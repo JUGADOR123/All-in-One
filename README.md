@@ -1,6 +1,10 @@
 # All-in-One
 All in one mod for Jet 12.8 and forwards
 
+8-dec-2020 Update 2.0.10
+
+	-added time acceleration setting, allowing you to speed up or slow down day length
+
 7-dec-2020 Update 2.0.9
 
 	-fixed raid timer bug

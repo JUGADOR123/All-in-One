@@ -45,3 +45,6 @@ loot:
 	chanceforemptycontainers	(0-100)				the chance for a container to be empty
 	chancetospawnnextitem		(0-100)				the chance to succesfully put an item in a container
 	attemptstoplaceloot			(any number)		amount of tries to put an item inside a container
+weather:
+	changeTimeAcceleration			true/false		enable or disable modifications to time acceleration
+	acceleration				(any number)		speed up or slow down the day/night cycle. Tarkov default is 7.

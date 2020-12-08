@@ -1,7 +1,7 @@
 {
     "name": "AllinOne",
     "author": "Jugador123",
-    "version": "2.0.9",
+    "version": "2.0.10",
     "license": "MIT",
         "autoUpdate": true,
         "checkUpdateUrl": "https://raw.githubusercontent.com/JUGADOR123/All-in-One/main/updater.json",
@@ -19,6 +19,7 @@
         "src/loot.js":"TamperModLoad",
         "src/items.js":"CacheModLoad",
         "src/hideout.js":"CacheModLoad",
-        "src/gameplay.js":"TamperModLoad"
+        "src/gameplay.js":"TamperModLoad",
+        "src/weather.js":"CacheModLoad"
     }
 }
