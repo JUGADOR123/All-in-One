@@ -1,6 +1,9 @@
 # All-in-One
 All in one mod for Jet 12.8 and forwards
 
+7-dec-2020 Update 2.0.9
+
+	-fixed raid timer bug
 
 3-dec-2020 Update 2.0.8:
 
