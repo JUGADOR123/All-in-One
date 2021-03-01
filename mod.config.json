@@ -1,24 +1,9 @@
 {
-    "name": "AllinOne",
+    "name": "All-in-One-v2",
     "author": "Jugador123",
-    "version": "2.0.9",
+    "version": "2.1.0",
     "license": "MIT",
-        "autoUpdate": true,
-        "checkUpdateUrl": "https://raw.githubusercontent.com/JUGADOR123/All-in-One/main/updater.json",
     "src": {
-        "src/flea.js":"TamperModLoad",
-        "src/clothes.js":"CacheModLoad",
-        "src/boss.js":"CacheModLoad",
-        "src/allextracts":"CacheModLoad",
-        "src/timer.js":"CacheModLoad",
-        "src/stamina.js":"TamperModLoad",
-        "src/skills.js":"TamperModLoad",
-        "src/scav.js":"TamperModLoad",
-        "src/quests.js":"CacheModLoad",
-        "src/noextractres.js":"CacheModLoad",
-        "src/loot.js":"TamperModLoad",
-        "src/items.js":"CacheModLoad",
-        "src/hideout.js":"CacheModLoad",
-        "src/gameplay.js":"TamperModLoad"
+        "src/aio.js": "TamperModLoad"
     }
 }
