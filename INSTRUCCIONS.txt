@@ -1,0 +1,32 @@
+noWeight                    -true/false
+bulletStack                 -false/ any number
+moneyStack                  -false/ any number
+removeGammaRestrictions     -true/false
+armor&ArmoredRigs           -true/false
+CustomLoot                  -true/false
+overlappingLoot             -true/false
+globalLootModifier          -false/ any number
+Custom                      -false/ any number
+Factory                     -false/ any number
+Interchange                 -false/ any number
+Labs                        -false/ any number
+Reserve                     -false/ any number
+Shoreline                   -false/ any number
+Woods                       -false/ any number
+ChanceForEmpty              -false/ 100
+ChanceToSpawnNextItem       -false/ 100
+AttemptsToPlaceLoot         -false/ any number
+Not_exist                   -false/ any number
+Common                      -false/ any number
+Rare                        -false/ any number
+Superrare                   -false/ any number
+CustomTimer                 -false/ any number
+NoExitRestrictions          -true/false
+BossChance                  -false/ 100
+ScavTimer                   -false/ any number
+FastUpgrade                 -true/false
+FastProduction              -true/false
+FastBitcoin                 -true/false
+FastScavCase                -true/false
+InfiniteStamina             -true/false
+AllClothes                  -true/false
