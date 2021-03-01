@@ -3,9 +3,9 @@ exports.mod=()=> {
     //Load Settings
     let config = require("../config.json");
     //Load default values file
-    let defaults = require("defaults.json");
+    let defaults = require("../defaults.json");
     //Load cacheBase/Globals
-    let globals = fileIo.readParsed(global.db.cacheBase.globals);
+    let globals = fileIO.readParsed(global.db.cacheBase.globals);
     //Load Cache Stuff
     //Items
     let itemsFile = fileIO.readParsed(global.db.user.cache.items);
@@ -246,9 +246,19 @@ exports.mod=()=> {
                         "questRequirements": [],
                         "itemRequirements": []
                     }
+                    fileIO.write(global.db.assort[base].suits, trader);
                 }
             }
         }
     }
+    fileIO.write(global.db.cacheBase.globals, globals);
+    fileIO.write(global.db.user.cache.locations, mapfile);
+    fileIO.write(global.db.user.cache.items, itemsFile);
+    fileIO.write(global.db.user.configs.gameplay, gameplay);
+    fileIO.write(global.db.user.cache.hideout_areas, hareas);
+    fileIO.write(global.db.user.cache.hideout_production, hprod);
+    fileIO.write(global.db.user.cache.hideout_scavcase, scavcase);
+    fileIO.write(global.db.user.cache.customization, customization);
+    
     logger.logSuccess("[Mod] All in One v2 Successfully Applied")
 }
