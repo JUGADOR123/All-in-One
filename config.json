@@ -1,48 +1,49 @@
 {
     "items": {
-        "noWeight": false,
-        "bulletStack": false,
-        "moneyStack": false,
-        "removeGammaRestrictions": false,
-        "armor&ArmoredRigs": false
+        "noWeight": true,
+        "bulletStack": 500,
+        "moneyStack": 6942069,
+        "removeGammaRestrictions": true,
+        "armor&ArmoredRigs": true
     },
     "Map": {
-        "CustomLoot": false,
-        "overlappingLoot": false,
-        "globalLootModifier": false,
-        "Custom": false,
-        "Factory": false,
-        "Interchange": false,
-        "Labs": false,
-        "Reserve": false,
-        "Shoreline": false,
-        "Woods": false,
+        "CustomLoot": true,
+        "overlappingLoot": true,
+        "globalLootModifier": 50,
+        "Custom": 500,
+        "Factory": 500,
+        "Interchange": 500,
+        "Labs": 500,
+        "Reserve": 500,
+        "Shoreline": 500,
+        "Woods": 500,
         "containers": {
-            "ChanceForEmpty": false,
-            "ChanceToSpawnNextItem": false,
-            "AttemptsToPlaceLoot": false,
+            "ChanceForEmpty": 0,
+            "ChanceToSpawnNextItem": 20,
+            "AttemptsToPlaceLoot": 20,
             "RarityMultipliers": {
-                "Not_exist": false,
-                "Common": false,
-                "Rare": false,
-                "Superrare": false
+                "Not_exist": 4,
+                "Common": 3,
+                "Rare": 2,
+                "Superrare": 1
             }
-        },
+        }
+    },
         "Match": {
-            "CustomTimer": false,
-            "NoExitRestrictions": false,
-            "BossChance":false,
-            "ScavTimer":false
+            "CustomTimer": 120,
+            "NoExitRestrictions": true,
+            "BossChance":100,
+            "ScavTimer":1
         },
         "Hideout":{
-            "FastUpgrade":false,
-            "FastProduction":false,
-            "FastBitcoin":false,
-            "FastScavCase":false
+            "FastUpgrade":true,
+            "FastProduction":true,
+            "FastBitcoin":true,
+            "FastScavCase":true
         },
         "Player":{
-            "InfiniteStamina":false,
-            "AllClothes":false
+            "InfiniteStamina":true,
+            "AllClothes":true
         }
-    }
+    
 }

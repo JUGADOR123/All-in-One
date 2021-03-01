@@ -11,7 +11,9 @@ exports.mod=()=> {
     let itemsFile = fileIO.readParsed(global.db.user.cache.items);
     let mapfile = fileIO.readParsed(global.db.user.cache.locations);
     //Gameplay.json
+    let locationloot = global._database.gameplayConfig.locationloot;
     let gameplay = fileIO.readParsed(global.db.user.configs.gameplay);
+    //const gameplay = require("../../../configs/gameplay.json")
     //Hideout Shit
     let hareas = fileIO.readParsed(global.db.user.cache.hideout_areas);
     let hprod = fileIO.readParsed(global.db.user.cache.hideout_production);
@@ -24,7 +26,7 @@ exports.mod=()=> {
         if (itemsFile.data[k]._type != "Node") {
             //No Weight
             if (config.items.noWeight === true) {
-                item._props.Weight = 0;
+                itemsFile.data[k]._props.Weight = 0;
             }
             //Money Stacks
             if (config.items.moneyStack != false) {
@@ -102,46 +104,46 @@ exports.mod=()=> {
         gameplay.locationloot = defaults.Maps.woods;
     }
     //Container Loot and if disabled, turns them back to defaults
-    if (config.Map.containers.ChanceForEmpty) {
-        gameplay.locationloot.containers.ChanceForEmpty = config.Map.containers.ChanceForEmpty;
+    if (config.Map.containers.ChanceForEmpty!= false) {
+        locationloot.containers.ChanceForEmpty = config.Map.containers.ChanceForEmpty;
     } else {
-        gameplay.locationloot.containers.ChanceForEmpty = defaults.containers.ChanceForEmpty;
+        locationloot.containers.ChanceForEmpty = defaults.containers.ChanceForEmpty;
     }
     if (config.Map.containers.ChanceToSpawnNextItem != false) {
-        gameplay.locationloot.containers.ChanceToSpawnNextItem = config.Map.containers.ChanceToSpawnNextItem;
+        locationloot.containers.ChanceToSpawnNextItem = config.Map.containers.ChanceToSpawnNextItem;
 
     } else {
-        gameplay.locationloot.containers.ChanceToSpawnNextItem = defaults.containers.ChanceToSpawnNextItem;
+        locationloot.containers.ChanceToSpawnNextItem = defaults.containers.ChanceToSpawnNextItem;
     }
     if (config.Map.containers.AttemptsToPlaceLoot != false) {
-        gameplay.locationloot.containers.AttemptsToPlaceLoot = config.Map.containers.AttemptsToPlaceLoot;
+        locationloot.containers.AttemptsToPlaceLoot = config.Map.containers.AttemptsToPlaceLoot;
 
     } else {
-        gameplay.locationloot.containers.AttemptsToPlaceLoot = defaults.containers.AttemptsToPlaceLoot;
+        locationloot.containers.AttemptsToPlaceLoot = defaults.containers.AttemptsToPlaceLoot;
     }
     if (config.Map.containers.RarityMultipliers.Not_exist != false) {
-        gameplay.locationloot.containers.Not_exist = config.Map.containers.RarityMultipliers.Not_exist;
+        locationloot.containers.Not_exist = config.Map.containers.RarityMultipliers.Not_exist;
 
     } else {
-        gameplay.locationloot.containers.Not_exist = defaults.containers.RarityMultipliers.Not_exist;
+        locationloot.containers.Not_exist = defaults.containers.RarityMultipliers.Not_exist;
     }
     if (config.Map.containers.RarityMultipliers.Common != false) {
-        gameplay.locationloot.containers.Common = config.Map.containers.RarityMultipliers.Common;
+        locationloot.containers.Common = config.Map.containers.RarityMultipliers.Common;
 
     } else {
-        gameplay.locationloot.containers.Common = defaults.containers.RarityMultipliers.Common;
+        locationloot.containers.Common = defaults.containers.RarityMultipliers.Common;
     }
     if (config.Map.containers.RarityMultipliers.Rare != false) {
-        gameplay.locationloot.containers.Rare = config.Map.containers.RarityMultipliers.Rare;
+        locationloot.containers.Rare = config.Map.containers.RarityMultipliers.Rare;
 
     } else {
-        gameplay.locationloot.containers.Rare = defaults.containers.RarityMultipliers.Rare;
+        locationloot.containers.Rare = defaults.containers.RarityMultipliers.Rare;
     }
-    if (config.Map.containersRarityMultipliers.Superrare != false) {
-        gameplay.locationloot.containers.Superrare = config.Map.containersRarityMultipliers.Superrare;
+    if (config.Map.containers.RarityMultipliers.Superrare != false) {
+        locationloot.containers.Superrare = config.Map.containers.RarityMultipliers.Superrare;
 
     } else {
-        gameplay.locationloot.containers.Superrare = defaults.containers.RarityMultipliers.Superrare;
+        locationloot.containers.Superrare = defaults.containers.RarityMultipliers.Superrare;
     }
     //Match Related Stuff
     if (config.Match.CustomTimer != false) {
@@ -166,7 +168,7 @@ exports.mod=()=> {
     //BossChance
     if (config.Match.BossChance != false) {
         for (let map in mapfile) {
-            for (let boss in mapfile[map].base) {
+            for (let boss in mapfile[map].base.BossLocationSpawn) {
                 mapfile[map].base.BossLocationSpawn[boss].BossChance = config.Match.BossChance;
             }
         }
@@ -184,7 +186,7 @@ exports.mod=()=> {
     if (config.Hideout.FastUpgrade === true) {
         for (let area in hareas.data) {
             for (let stage in hareas.data[area].stages) {
-                hareas.data[data].stages[stage].constructionTime = 5;
+                hareas.data[area].stages[stage].constructionTime = 5;
             }
         }
     }
@@ -196,7 +198,7 @@ exports.mod=()=> {
             }
             //Fast Bitcoin
             if (config.Hideout.FastBitcoin === true) {
-                hareas.data[area].productionTime = 5;
+                hprod.data[area].productionTime = 5;
             }
         }
     }
@@ -230,7 +232,7 @@ exports.mod=()=> {
         globals.data.config.Stamina.OxygenRestoration = 4;
     }
     //All Clothes
-    if (config.Plaer.AllClothes === true) {
+    if (config.Player.AllClothes === true) {
         for (let clothe in customization.data) {
             customization.data[clothe]._props.Side = ["Savage", "Bear", "Usec"];
         }
@@ -254,7 +256,7 @@ exports.mod=()=> {
     fileIO.write(global.db.cacheBase.globals, globals);
     fileIO.write(global.db.user.cache.locations, mapfile);
     fileIO.write(global.db.user.cache.items, itemsFile);
-    fileIO.write(global.db.user.configs.gameplay, gameplay);
+    //fileIO.write(global.db.user.configs.gameplay, gameplay);
     fileIO.write(global.db.user.cache.hideout_areas, hareas);
     fileIO.write(global.db.user.cache.hideout_production, hprod);
     fileIO.write(global.db.user.cache.hideout_scavcase, scavcase);
