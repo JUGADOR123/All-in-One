@@ -1,4 +1,4 @@
-exports.mod=()=> {
+exports.mod = () => {
     logger.logInfo("[Mod] All in One v2");
     //Load Settings
     let config = require("../config.json");
@@ -104,7 +104,7 @@ exports.mod=()=> {
         gameplay.locationloot = defaults.Maps.woods;
     }
     //Container Loot and if disabled, turns them back to defaults
-    if (config.Map.containers.ChanceForEmpty!= false) {
+    if (config.Map.containers.ChanceForEmpty != false) {
         locationloot.containers.ChanceForEmpty = config.Map.containers.ChanceForEmpty;
     } else {
         locationloot.containers.ChanceForEmpty = defaults.containers.ChanceForEmpty;
@@ -150,6 +150,8 @@ exports.mod=()=> {
         for (let map in mapfile) {
             //Custom map timer
             mapfile[map].base.exit_access_time = config.Match.CustomTimer;
+            mapfile[map].base.escape_time_limit = config.Match.CustomTimer; 
+
             //No exit Restrictions
             if (config.Match.NoExitRestrictions === true) {
                 mapfile[map].base.exit_count = 10;
@@ -261,6 +263,6 @@ exports.mod=()=> {
     fileIO.write(global.db.user.cache.hideout_production, hprod);
     fileIO.write(global.db.user.cache.hideout_scavcase, scavcase);
     fileIO.write(global.db.user.cache.customization, customization);
-    
+
     logger.logSuccess("[Mod] All in One v2 Successfully Applied")
 }

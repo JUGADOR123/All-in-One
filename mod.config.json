@@ -1,7 +1,7 @@
 {
     "name": "All-in-One-v2",
     "author": "Jugador123",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "license": "MIT",
     "src": {
         "src/aio.js": "TamperModLoad"
