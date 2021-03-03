@@ -235,9 +235,6 @@ exports.mod = () => {
     }
     //All Clothes  not sure what you want to do here,  as its all in one loop.   so i leave this one to you. 
     if (config.Player.AllClothes === true) {
-        for (let clothe in customization.data) {
-            customization.data[clothe]._props.Side = ["Savage", "Bear", "Usec"];
-        }
         for (let base in global.db.assort) {
             if (base === "5ac3b934156ae10c4430e83c" || base === "579dc571d53a0658a154fbec") {
                 trader = fileIO.readParsed(global.db.assort[base].suits);

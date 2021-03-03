@@ -12,7 +12,7 @@ exports.mod = () => {
     let hprod = fileIO.readParsed(global.db.user.cache.hideout_production);
     let scavcase = fileIO.readParsed(global.db.user.cache.hideout_scavcase);
     //Clothing shit
-    //customization = fileIO.readParsed(global.db.user.cache.customization);
+    customization = fileIO.readParsed(global.db.user.cache.customization);
     //Main Loop
     for (let k in itemsFile.data) {
         //Remove Nodes
@@ -110,10 +110,16 @@ exports.mod = () => {
             scavcase.data[price].productionTime = 5;
         }
     }
+    //Clothing Shit
+    if (config.Player.AllClothes === true) {
+        for (let clothe in customization.data) {
+            customization.data[clothe]._props.Side = ["Savage", "Bear", "Usec"];
+        }
+    }
     fileIO.write(global.db.user.cache.locations, mapfile);
     fileIO.write(global.db.user.cache.items, itemsFile);
     fileIO.write(global.db.user.cache.hideout_areas, hareas);
     fileIO.write(global.db.user.cache.hideout_production, hprod);
     fileIO.write(global.db.user.cache.hideout_scavcase, scavcase);
-    //fileIO.write(global.db.user.cache.customization, customization);
+    fileIO.write(global.db.user.cache.customization, customization);
 }
