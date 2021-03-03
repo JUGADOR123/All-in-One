@@ -9,7 +9,7 @@ exports.mod = () => {
     //Load Cache Stuff
     //Items
     //let itemsFile = fileIO.readParsed(global.db.user.cache.items);
-    //let mapfile = fileIO.readParsed(global.db.user.cache.locations);
+    let mapfile = fileIO.readParsed(global.db.user.cache.locations);
     //Gameplay.json
     let locationloot = global._database.gameplayConfig.locationloot;
     let gameplay = fileIO.readParsed(global.db.user.configs.gameplay);
@@ -253,7 +253,7 @@ exports.mod = () => {
         }
     }
     fileIO.write(global.db.cacheBase.globals, globals);
-    //fileIO.write(global.db.user.cache.locations, mapfile);
+    fileIO.write(global.db.user.cache.locations, mapfile);
     //fileIO.write(global.db.user.cache.items, itemsFile);
     //fileIO.write(global.db.user.configs.gameplay, gameplay);
     //fileIO.write(global.db.user.cache.hideout_areas, hareas);
