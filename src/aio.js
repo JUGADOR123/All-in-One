@@ -8,20 +8,20 @@ exports.mod = () => {
     let globals = fileIO.readParsed(global.db.cacheBase.globals);
     //Load Cache Stuff
     //Items
-    let itemsFile = fileIO.readParsed(global.db.user.cache.items);
-    let mapfile = fileIO.readParsed(global.db.user.cache.locations);
+    //let itemsFile = fileIO.readParsed(global.db.user.cache.items);
+    //let mapfile = fileIO.readParsed(global.db.user.cache.locations);
     //Gameplay.json
     let locationloot = global._database.gameplayConfig.locationloot;
     let gameplay = fileIO.readParsed(global.db.user.configs.gameplay);
     //const gameplay = require("../../../configs/gameplay.json")
     //Hideout Shit
-    let hareas = fileIO.readParsed(global.db.user.cache.hideout_areas);
-    let hprod = fileIO.readParsed(global.db.user.cache.hideout_production);
-    let scavcase = fileIO.readParsed(global.db.user.cache.hideout_scavcase);
+    //let hareas = fileIO.readParsed(global.db.user.cache.hideout_areas);
+   // let hprod = fileIO.readParsed(global.db.user.cache.hideout_production);
+    //let scavcase = fileIO.readParsed(global.db.user.cache.hideout_scavcase);
     //Clothing shit
     customization = fileIO.readParsed(global.db.user.cache.customization);
     //Main Loop
-    for (let k in itemsFile.data) {
+    /*for (let k in itemsFile.data) {
         //Remove Nodes
         if (itemsFile.data[k]._type != "Node") {
             //No Weight
@@ -54,7 +54,7 @@ exports.mod = () => {
                 }
             }
         }
-    }
+    }*/
     //Loot Overlap
     if (config.Map.CustomLoot === true) {
         //Overlap Loot
@@ -146,7 +146,7 @@ exports.mod = () => {
         locationloot.containers.Superrare = defaults.containers.RarityMultipliers.Superrare;
     }
     //Match Related Stuff
-    if (config.Match.CustomTimer != false) {
+    /*if (config.Match.CustomTimer != false) {
         for (let map in mapfile) {
             //Custom map timer
             mapfile[map].base.exit_access_time = config.Match.CustomTimer;
@@ -174,7 +174,7 @@ exports.mod = () => {
                 mapfile[map].base.BossLocationSpawn[boss].BossChance = config.Match.BossChance;
             }
         }
-    }
+    }*/
     //Scav Timer
     if (config.Match.ScavTimer != false) {
         globals.data.config.SavagePlayCooldown = config.Match.ScavTimer;
@@ -185,7 +185,7 @@ exports.mod = () => {
     }
     //Hideout Shit
     //Upgrading timer
-    if (config.Hideout.FastUpgrade === true) {
+    /*if (config.Hideout.FastUpgrade === true) {
         for (let area in hareas.data) {
             for (let stage in hareas.data[area].stages) {
                 hareas.data[area].stages[stage].constructionTime = 5;
@@ -209,7 +209,7 @@ exports.mod = () => {
         for (let price in scavcase.data) {
             scavcase.data[price].productionTime = 5;
         }
-    }
+    }*/
     //Infinite Stamina
     if (config.Player.InfiniteStamina === true) {
         globals.data.config.Stamina.Capacity = 1000;
@@ -233,7 +233,7 @@ exports.mod = () => {
         globals.data.config.Stamina.OxygenCapacity = 300;
         globals.data.config.Stamina.OxygenRestoration = 4;
     }
-    //All Clothes
+    //All Clothes  not sure what you want to do here,  as its all in one loop.   so i leave this one to you. 
     if (config.Player.AllClothes === true) {
         for (let clothe in customization.data) {
             customization.data[clothe]._props.Side = ["Savage", "Bear", "Usec"];
@@ -256,12 +256,12 @@ exports.mod = () => {
         }
     }
     fileIO.write(global.db.cacheBase.globals, globals);
-    fileIO.write(global.db.user.cache.locations, mapfile);
-    fileIO.write(global.db.user.cache.items, itemsFile);
+    //fileIO.write(global.db.user.cache.locations, mapfile);
+    //fileIO.write(global.db.user.cache.items, itemsFile);
     //fileIO.write(global.db.user.configs.gameplay, gameplay);
-    fileIO.write(global.db.user.cache.hideout_areas, hareas);
-    fileIO.write(global.db.user.cache.hideout_production, hprod);
-    fileIO.write(global.db.user.cache.hideout_scavcase, scavcase);
+    //fileIO.write(global.db.user.cache.hideout_areas, hareas);
+    //fileIO.write(global.db.user.cache.hideout_production, hprod);
+    //fileIO.write(global.db.user.cache.hideout_scavcase, scavcase);
     fileIO.write(global.db.user.cache.customization, customization);
 
     logger.logSuccess("[Mod] All in One v2 Successfully Applied")
