@@ -19,7 +19,7 @@ exports.mod = () => {
    // let hprod = fileIO.readParsed(global.db.user.cache.hideout_production);
     //let scavcase = fileIO.readParsed(global.db.user.cache.hideout_scavcase);
     //Clothing shit
-    customization = fileIO.readParsed(global.db.user.cache.customization);
+    //customization = fileIO.readParsed(global.db.user.cache.customization);
     //Main Loop
     /*for (let k in itemsFile.data) {
         //Remove Nodes
@@ -259,7 +259,7 @@ exports.mod = () => {
     //fileIO.write(global.db.user.cache.hideout_areas, hareas);
     //fileIO.write(global.db.user.cache.hideout_production, hprod);
     //fileIO.write(global.db.user.cache.hideout_scavcase, scavcase);
-    fileIO.write(global.db.user.cache.customization, customization);
+    //fileIO.write(global.db.user.cache.customization, customization);
 
     logger.logSuccess("[Mod] All in One v2 Successfully Applied")
 }
