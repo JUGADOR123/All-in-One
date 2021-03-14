@@ -180,8 +180,8 @@ exports.mod = () => {
         globals.data.config.SavagePlayCooldown = config.Match.ScavTimer;
         globals.data.config.SavagePlayCooldownNdaFree = config.Match.ScavTimer;
     } else {
-        globals.data.config.SavagePlayCooldown = 60;
-        globals.data.config.SavagePlayCooldownNdaFree = 60;
+        globals.data.SavagePlayCooldown = 60;
+        globals.data.SavagePlayCooldownNdaFree = 60;
     }
     //Hideout Shit
     //Upgrading timer
