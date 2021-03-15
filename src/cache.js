@@ -94,12 +94,10 @@ exports.mod = () => {
     }
     //Crafting timer
     if (config.Hideout.FastProduction === true) {
-        for (let area in hprod.data) {
-            if (!hprod.data[area]._id === "5d5c205bd582a50d042a3c0e") {
-                hprod.data[area].productionTime = 5;
-            }
-            //Fast Bitcoin
-            if (config.Hideout.FastBitcoin === true) {
+        if (config.Hideout.FastBitcoin === true) {
+            hprod.data[area].productionTime = 5;
+        } else if (config.Hideout.FastBitcoin === false) {
+            if (!hprod.data[area].areaType === 20) {
                 hprod.data[area].productionTime = 5;
             }
         }
