@@ -92,13 +92,15 @@ exports.mod = () => {
             }
         }
     }
-    //Crafting timer
+    //Crafting Timer
     if (config.Hideout.FastProduction === true) {
-        if (config.Hideout.FastBitcoin === true) {
-            hprod.data[area].productionTime = 5;
-        } else if (config.Hideout.FastBitcoin === false) {
-            if (!hprod.data[area].areaType === 20) {
-                hprod.data[area].productionTime = 5;
+        for (let item in hprod.data) {
+            if (config.Hideout.FastBitcoin === true) {
+                //All items and bitcoin farm
+                hprod.data[item].productionTime = 5;
+            } else if (!hprod.data[item].areaType === 20) {
+                //Everything but bitcoin farm
+                hprod.data[item].productionTime = 5;
             }
         }
     }
