@@ -95,12 +95,20 @@ exports.mod = () => {
     //Crafting timer
     if (config.Hideout.FastProduction === true) {
         for (let area in hprod.data) {
-            if (!hprod.data[area]._id === "5d5c205bd582a50d042a3c0e") {
-                hprod.data[area].productionTime = 5;
+            if (hprod.data[area]._id === "5d5c205bd582a50d042a3c0e") {
+                
+                continue    //make it ignore the bitcoinfarm
             }
-            //Fast Bitcoin
-            if (config.Hideout.FastBitcoin === true) {
-                hprod.data[area].productionTime = 5;
+            else{
+                hprod.data[area].productionTime = 5; 
+            }
+        }
+    }        
+    //Fast Bitcoin
+    if (config.Hideout.FastBitcoin === true){
+        for (let area in hprod.data) {
+            if(hprod.data[area]._id === "5d5c205bd582a50d042a3c0e"){
+                hprod.data[area].productionTime = 30; // only change speed of the bitcoinfarm
             }
         }
     }
