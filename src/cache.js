@@ -104,6 +104,14 @@ exports.mod = () => {
             }
         }
     }
+    //Only Bitcoin Farm
+    if (config.Hideout.FastBitcoin === true) {
+        for (let item in hprod.data) {
+            if (hprod.data[item].areaType === 20) {
+                hprod.data[item].productionTime = 5;
+            }
+        }
+    }
     //Fast Scav Case
     if (config.Hideout.FastScavCase === true) {
         for (let price in scavcase.data) {
