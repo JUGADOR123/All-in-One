@@ -67,15 +67,15 @@ exports.mod = () => {
     if (config.Match.NoExitRestrictions === true) {
         mapfile[map].base.exit_count = 10;
         mapfile[map].base.MinDistToExitPoint = 0;
-            for (let exit in mapfile[map].base.exits) {
-                mapfile[map].base.exits[exit].Chance = 100;
-                mapfile[map].base.exits[exit].PassageRequirement = "None";
-                mapfile[map].base.exits[exit].ExfiltrationType = "Individual";
-                mapfile[map].base.exits[exit].Id = "";
-                mapfile[map].base.exits[exit].Count = 0;
-                mapfile[map].base.exits[exit].RequirementTip = "";
-            }
-        
+        for (let exit in mapfile[map].base.exits) {
+            mapfile[map].base.exits[exit].Chance = 100;
+            mapfile[map].base.exits[exit].PassageRequirement = "None";
+            mapfile[map].base.exits[exit].ExfiltrationType = "Individual";
+            mapfile[map].base.exits[exit].Id = "";
+            mapfile[map].base.exits[exit].Count = 0;
+            mapfile[map].base.exits[exit].RequirementTip = "";
+        }
+
     }
     //BossChance
     if (config.Match.BossChance != false) {
