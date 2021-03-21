@@ -1,18 +1,18 @@
 exports.mod = () => {
     logger.logInfo("[Mod] All in One v2");
     //Load Settings
-    const config = require("./config.js");
+    const config = require("../config.js");
     //Load cacheBase/Globals
     let globals = fileIO.readParsed(global.db.cacheBase.globals);
     //Load Cache Stuff
         //Items
-    let itemsFile = fileIO.readParsed(global.db.user.cache.items);
-    let mapfile = fileIO.readParsed(global.db.user.cache.locations);
+    let itemsFile = fileIO.readParsed(`user/cache/items.json`);
+    let mapfile = fileIO.readParsed(`user/cache/locations.json`);
     
     //Hideout Shit
-    let hareas = fileIO.readParsed(global.db.user.cache.hideout_areas);
-    let hprod = fileIO.readParsed(global.db.user.cache.hideout_production);
-    let scavcase = fileIO.readParsed(global.db.user.cache.hideout_scavcase);
+    let hareas = fileIO.readParsed(`user/cache/hideout_areas.json`);
+    let hprod = fileIO.readParsed(`user/cache/hideout_production.json`);
+    let scavcase = fileIO.readParsed(`user/cache/hideout_scavcase.json`);
     //Main Loop
     for (let k in itemsFile.data) {
         //Remove Nodes
@@ -69,6 +69,12 @@ exports.mod = () => {
             }
         }
     }
+    //Global loot modifier
+    if (config.locationloot.globalLootModifier != false) {
+        for (let map in mapfile) {
+            mapfile[map].base.GlobalLootChanceModifier = config.locationloot.globalLootModifier;
+        }
+    }
     //BossChance
     if (config.BossChance != false) {
         for (let map in mapfile) {
@@ -94,13 +100,14 @@ exports.mod = () => {
     //Crafting timer
     if (config.FastProduction === true) {
         for (let area in hprod.data) {
-            if (hprod.data[area]._id != "5d5c205bd582a50d042a3c0e") {
+            //if (hprod.data[area]._id != "5d5c205bd582a50d042a3c0e") {
                 hprod.data[area].productionTime = 5;
-            }
+            
             //Fast Bitcoin
-            if (config.Hideout.FastBitcoin === true) {
-                hprod.data[area].productionTime = 5;
-            }
+            /*if (config.Hideout.FastBitcoin === true) {
+                if(hprod.data._id = "5d5c205bd582a50d042a3c0e"){
+                    .productionTime = 5;
+            }*/
         }
     }
     //Fast Scav Case
@@ -122,8 +129,8 @@ exports.mod = () => {
         globals.data.config.Stamina.OxygenRestoration = 1000;
     } 
     //All Clothes  not sure what you want to do here,  as its all in one loop.   so i leave this one to you. 
-    let trader = fileIO.readParsed(`db/user/cache/assort_5ac3b934156ae10c4430e83c.json`);
-    let traders = fileIO.readParsed(`db/user/cache/assort_579dc571d53a0658a154fbec.json`);
+    let trader = fileIO.readParsed(`user/cache/assort_5ac3b934156ae10c4430e83c.json`);
+    let traders = fileIO.readParsed(`user/cache/assort_579dc571d53a0658a154fbec.json`);
     if (config.AllClothes === true) {  
         for (let suits in trader) {
             trader[suits].requirements = {
@@ -134,7 +141,7 @@ exports.mod = () => {
                 "questRequirements": [],
                 "itemRequirements": []
             }
-            fileIO.write(`db/user/cache/assort_5ac3b934156ae10c4430e83c.json`, trader);
+            fileIO.write(`user/cache/assort_5ac3b934156ae10c4430e83c.json`, trader);
                 
         }
     }
@@ -148,16 +155,16 @@ exports.mod = () => {
                 "questRequirements": [],
                 "itemRequirements": []
             }
-            fileIO.write(`db/user/cache/assort_579dc571d53a0658a154fbec.json`, trader);
+            fileIO.write(`user/cache/assort_579dc571d53a0658a154fbec.json`, trader);
                 
         }
     }
     
-    fileIO.write(global.db.user.cache.db, db);
-    fileIO.write(global.db.user.cache.locations, mapfile);
-    fileIO.write(global.db.user.cache.items, itemsFile);
-    fileIO.write(global.db.user.cache.hideout_areas, hareas);
-    fileIO.write(global.db.user.cache.hideout_production, hprod);
-    fileIO.write(global.db.user.cache.hideout_scavcase, scavcase);
+    fileIO.write(`user/cache/db.json`, db);
+    fileIO.write(`user/cache/locations.json`, mapfile);
+    fileIO.write(`user/cache/items.json`, itemsFile);
+    fileIO.write(`user/cache/hideout_areas.json`, hareas);
+    fileIO.write(`user/cache/hideout_production.json`, hprod);
+    fileIO.write(`user/cache/hideout_scavcase.json`, scavcase);
     logger.logSuccess("[Mod] All in One v2 Successfully Applied")
 }

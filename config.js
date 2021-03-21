@@ -38,7 +38,7 @@ module.exports = {
     "ScavTimer":false,                      //false or value, cooldown timer for scav runs
     "FastUpgrade":false,                    //true or false, true = upgrade time of 5 seconds
     "FastProduction":false,                 //true or false, true = craft time of 5 seconds
-    "FastBitcoin":false,                    //true or false, true = production time of 5 seconds
+    //"FastBitcoin":false,                    //true or false, true = production time of 5 seconds
     "FastScavCase":false,                   //true or false, true = scavcase return time of 5 seconds
     "InfiniteStamina":false,                //true or false, true = infinite stamina, will effect some skills progress
     "AllClothes":false                      //true or false, true = all clothing unlocked

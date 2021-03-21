@@ -1,7 +1,7 @@
 exports.mod = () => {
     logger.logInfo("[Mod] All in One v2");
     //Load Settings
-    const config = require("./config.js");
+    const config = require("../config.js");
     //Gameplay.json
     let locationloot = global._database.gameplayConfig.locationloot;
     let gameplay = fileIO.readParsed(global.db.user.configs.gameplay);
@@ -12,12 +12,6 @@ exports.mod = () => {
         if (config.locationloot.overlappingLoot === true) {
             gameplay.locationloot.allowLootOverlap = true;
         } 
-        //Global loot modifier
-        if (config.locationloot.globalLootModifier != false) {
-            for (let map in mapfile) {
-                mapfile[map].base.GlobalLootChanceModifier = config.locationloot.globalLootModifier;
-            }
-        }
         //Per map loot
         gameplay.locationloot.bigmap = config.locationloot.Custom;
         gameplay.locationloot.factory4_day = config.locationloot.Factory;
