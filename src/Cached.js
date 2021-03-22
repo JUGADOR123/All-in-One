@@ -5,10 +5,10 @@ exports.mod = () => {
     //Load cacheBase/Globals
     let globals = fileIO.readParsed(global.db.cacheBase.globals);
     //Load Cache Stuff
-        //Items
+    //Items
     let itemsFile = fileIO.readParsed(`user/cache/items.json`);
     let mapfile = fileIO.readParsed(`user/cache/locations.json`);
-    
+
     //Hideout Shit
     let hareas = fileIO.readParsed(`user/cache/hideout_areas.json`);
     let hprod = fileIO.readParsed(`user/cache/hideout_production.json`);
@@ -27,12 +27,12 @@ exports.mod = () => {
                 if (itemsFile.data[k]._props.Name === "Dollars" || itemsFile.data[k]._props.Name === "Рубли" || itemsFile.data[k]._props.Name === "Euros") {
                     itemsFile.data[k]._props.stackMaxSize = config.Stacksize.money;
                 }
-            //ammo stack size
+                //ammo stack size
                 if (itemsFile.data[k]._name.includes("patron")) {
                     itemsFile.data[k]._props.stackMaxSize = config.Stacksize.Ammo;
                 }
             }
-            
+
             //Gamma Restrictions
             if (config.removeGammaRestrictions === true) {
                 if (itemsFile.data[k]._parent === "5448e53e4bdc2d60728b4567" || itemsFile.data[k]._parent === "5448bf274bdc2dfc2f8b456a") {
@@ -47,7 +47,7 @@ exports.mod = () => {
             }
         }
     }
-    
+
     //Match Related Stuff
     if (config.CustomTimer != false) {
         for (let map in mapfile) {
@@ -87,7 +87,7 @@ exports.mod = () => {
     if (config.ScavTimer != false) {
         globals.data.config.SavagePlayCooldown = config.ScavTimer;
         globals.data.config.SavagePlayCooldownNdaFree = config.ScavTimer;
-    } 
+    }
     //Hideout Shit
     //Upgrading timer
     if (config.FastUpgrade === true) {
@@ -137,39 +137,27 @@ exports.mod = () => {
         globals.data.config.Stamina.AimDrainRate = 0.1;
         globals.data.config.Stamina.OxygenCapacity = 1000;
         globals.data.config.Stamina.OxygenRestoration = 1000;
-    } 
-    //All Clothes  not sure what you want to do here,  as its all in one loop.   so i leave this one to you. 
-    let trader = fileIO.readParsed(`user/cache/assort_5ac3b934156ae10c4430e83c.json`);
-    let traders = fileIO.readParsed(`user/cache/assort_579dc571d53a0658a154fbec.json`);
-    if (config.AllClothes === true) {  
-        for (let suits in trader) {
-            trader[suits].requirements = {
-                "loyaltyLevel": 0,
-                "profileLevel": 1,
-                "standing": 0,
-                "skillRequirements": [],
-                "questRequirements": [],
-                "itemRequirements": []
+    }
+    //All clothing unlocked and free
+    const traders = ["5ac3b934156ae10c4430e83c.json", "579dc571d53a0658a154fbec.json"]
+    if (config.AllClothes === true) {
+        for (let trader in traders) {
+            let shop = fileIO.readParsed("user/cache/assort_" + traders[trader])
+            for (let suit in shop.data.suits) {
+                //logger.logInfo(shop.data.suits[suit]._id)
+                shop.data.suits[suit].requirements = {
+                    "loyaltyLevel": 0,
+                    "profileLevel": 1,
+                    "standing": 0,
+                    "skillRequirements": [],
+                    "questRequirements": [],
+                    "itemRequirements": []
+                }
             }
-            fileIO.write(`user/cache/assort_5ac3b934156ae10c4430e83c.json`, trader);
-                
+            fileIO.write('user/cache/assort_' + traders[trader], shop)
         }
     }
-    if (config.AllClothes === true) {  
-        for (let suits in traders) {
-            traders[suits].requirements = {
-                "loyaltyLevel": 0,
-                "profileLevel": 1,
-                "standing": 0,
-                "skillRequirements": [],
-                "questRequirements": [],
-                "itemRequirements": []
-            }
-            fileIO.write(`user/cache/assort_579dc571d53a0658a154fbec.json`, trader);
-                
-        }
-    }
-    
+
     fileIO.write(`user/cache/db.json`, db);
     fileIO.write(`user/cache/locations.json`, mapfile);
     fileIO.write(`user/cache/items.json`, itemsFile);
