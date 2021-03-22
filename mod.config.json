@@ -4,7 +4,7 @@
     "version": "2.1.3",
     "license": "MIT",
     "src": {
-        "src/aio.js": "TamperModLoad",
-        "src/cache.js": "CacheModLoad"
+        "src/gameplay.js": "TamperModLoad",
+        "src/Cached.js": "CacheModLoad"
     }
 }
