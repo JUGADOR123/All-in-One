@@ -128,15 +128,15 @@ exports.mod = () => {
     }
     //Infinite Stamina
     if (config.InfiniteStamina === true) {
-        globals.data.config.Stamina.Capacity = 1000;
-        globals.data.config.Stamina.SprintDrainRate = 0.1;
-        globals.data.config.Stamina.BaseRestorationRate = 1000;
-        globals.data.config.Stamina.JumpConsumption = 1;
-        globals.data.config.Stamina.GrenadeHighThrow = 1;
-        globals.data.config.Stamina.GrenadeLowThrow = 1;
-        globals.data.config.Stamina.AimDrainRate = 0.1;
-        globals.data.config.Stamina.OxygenCapacity = 1000;
-        globals.data.config.Stamina.OxygenRestoration = 1000;
+        globals.data.Stamina.Capacity = 1000;
+        globals.data.Stamina.SprintDrainRate = 0.1;
+        globals.data.Stamina.BaseRestorationRate = 1000;
+        globals.data.Stamina.JumpConsumption = 1;
+        globals.data.Stamina.GrenadeHighThrow = 1;
+        globals.data.Stamina.GrenadeLowThrow = 1;
+        globals.data.Stamina.AimDrainRate = 0.1;
+        globals.data.Stamina.OxygenCapacity = 1000;
+        globals.data.Stamina.OxygenRestoration = 1000;
     }
     //All clothing unlocked and free
     const traders = ["5ac3b934156ae10c4430e83c.json", "579dc571d53a0658a154fbec.json"]
