@@ -29,6 +29,8 @@ exports.mod = () => {
         locationloot.containers.Common = config.locationloot.containers.RarityMultipliers.Common;
         locationloot.containers.Rare = config.locationloot.containers.RarityMultipliers.Rare;
         locationloot.containers.Superrare = config.locationloot.containers.RarityMultipliers.Superrare;
+    } else {
+        logger.logError("[All in One] CustomLoot setting is disabled, ignoring loot settings")
     }
     fileIO.write(global.db.user.configs.gameplay, gameplay);
 }
