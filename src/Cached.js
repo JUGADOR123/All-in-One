@@ -98,16 +98,26 @@ exports.mod = () => {
         }
     }
     //Crafting timer
-    if (config.FastProduction === true) {
+    //All production
+    if (config.FastProduction === true && config.FastBitcoin === true) {
         for (let area in hprod.data) {
-            //if (hprod.data[area]._id != "5d5c205bd582a50d042a3c0e") {
+            hprod.data[area].productionTime = 5;
+        }
+    }
+    //Only Crafting
+    if (config.FastProduction === true && config.FastBitcoin === false) {
+        for (let area in hprod.data) {
+            if (hprod.data._id != "5d5c205bd582a50d042a3c0e") {
                 hprod.data[area].productionTime = 5;
-            
-            //Fast Bitcoin
-            /*if (config.Hideout.FastBitcoin === true) {
-                if(hprod.data._id = "5d5c205bd582a50d042a3c0e"){
-                    .productionTime = 5;
-            }*/
+            }
+        }
+    }
+    //Only Bitcoin
+    if (config.FastProduction === false && config.FastBitcoin === true) {
+        for (let area in hprod.data) {
+            if (hprod.data._id === "5d5c205bd582a50d042a3c0e") {
+                hprod.data[area].productionTime = 5;
+            }
         }
     }
     //Fast Scav Case
