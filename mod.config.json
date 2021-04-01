@@ -1,10 +1,10 @@
 {
     "name": "All-in-One-v2",
     "author": "Jugador123",
-    "version": "2.1.3",
+    "version": "2.1.4",
     "license": "MIT",
     "src": {
-        "src/gameplay.js": "TamperModLoad",
+        "src/tamper.js": "TamperModLoad",
         "src/Cached.js": "CacheModLoad"
     }
 }

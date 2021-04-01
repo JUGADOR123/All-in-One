@@ -2,8 +2,7 @@ exports.mod = () => {
     logger.logInfo("[Mod] All in One v2");
     //Load Settings
     const config = require("../config.js");
-    //Load cacheBase/Globals
-    let globals = fileIO.readParsed(global.db.cacheBase.globals);
+
     //Load Cache Stuff
     //Items
     let itemsFile = fileIO.readParsed(`user/cache/items.json`);
@@ -31,6 +30,8 @@ exports.mod = () => {
                 if (itemsFile.data[k]._name.includes("patron")) {
                     itemsFile.data[k]._props.stackMaxSize = config.Stacksize.Ammo;
                 }
+            } else {
+                logger.logError("[All in One v2] Stack setting is disabled, Ignoring custom stacks")
             }
 
             //Gamma Restrictions
@@ -54,18 +55,20 @@ exports.mod = () => {
             //Custom map timer
             mapfile[map].base.exit_access_time = config.CustomTimer;
             mapfile[map].base.escape_time_limit = config.CustomTimer;
-            //No exit Restrictions
-            if (config.NoExitRestrictions === true) {
-                mapfile[map].base.exit_count = 10;
-                mapfile[map].base.MinDistToExitPoint = 0;
-                for (let exit in mapfile[map].base.exits) {
-                    mapfile[map].base.exits[exit].Chance = 100;
-                    mapfile[map].base.exits[exit].PassageRequirement = "None";
-                    mapfile[map].base.exits[exit].ExfiltrationType = "Individual";
-                    mapfile[map].base.exits[exit].Id = "";
-                    mapfile[map].base.exits[exit].Count = 0;
-                    mapfile[map].base.exits[exit].RequirementTip = "";
-                }
+        }
+    }
+    //No exit Restrictions
+    if (config.NoExitRestrictions === true) {
+        for (let map in mapfile) {
+            mapfile[map].base.exit_count = 10;
+            mapfile[map].base.MinDistToExitPoint = 0;
+            for (let exit in mapfile[map].base.exits) {
+                mapfile[map].base.exits[exit].Chance = 100;
+                mapfile[map].base.exits[exit].PassageRequirement = "None";
+                mapfile[map].base.exits[exit].ExfiltrationType = "Individual";
+                mapfile[map].base.exits[exit].Id = "";
+                mapfile[map].base.exits[exit].Count = 0;
+                mapfile[map].base.exits[exit].RequirementTip = "";
             }
         }
     }
@@ -83,11 +86,7 @@ exports.mod = () => {
             }
         }
     }
-    //Scav Timer
-    if (config.ScavTimer != false) {
-        globals.data.config.SavagePlayCooldown = config.ScavTimer;
-        globals.data.config.SavagePlayCooldownNdaFree = config.ScavTimer;
-    }
+
     //Hideout Shit
     //Upgrading timer
     if (config.FastUpgrade === true) {
@@ -126,18 +125,7 @@ exports.mod = () => {
             scavcase.data[price].productionTime = 5;
         }
     }
-    //Infinite Stamina
-    if (config.InfiniteStamina === true) {
-        globals.data.Stamina.Capacity = 1000;
-        globals.data.Stamina.SprintDrainRate = 0.1;
-        globals.data.Stamina.BaseRestorationRate = 1000;
-        globals.data.Stamina.JumpConsumption = 1;
-        globals.data.Stamina.GrenadeHighThrow = 1;
-        globals.data.Stamina.GrenadeLowThrow = 1;
-        globals.data.Stamina.AimDrainRate = 0.1;
-        globals.data.Stamina.OxygenCapacity = 1000;
-        globals.data.Stamina.OxygenRestoration = 1000;
-    }
+
     //All clothing unlocked and free
     const traders = ["5ac3b934156ae10c4430e83c.json", "579dc571d53a0658a154fbec.json"]
     if (config.AllClothes === true) {
@@ -158,7 +146,6 @@ exports.mod = () => {
         }
     }
 
-    fileIO.write(`user/cache/db.json`, db);
     fileIO.write(`user/cache/locations.json`, mapfile);
     fileIO.write(`user/cache/items.json`, itemsFile);
     fileIO.write(`user/cache/hideout_areas.json`, hareas);
