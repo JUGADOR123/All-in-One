@@ -41,5 +41,5 @@ module.exports = {
     "FastBitcoin":false,                      //true or false, true = production time of 5 seconds
     "FastScavCase":false,                     //true or false, true = scavcase return time of 5 seconds
     "InfiniteStamina":false,                  //true or false, true = infinite stamina, will effect some skills progress
-    "AllClothes": false,                      //true or false, true = all clothing unlocked and free
+    "AllClothes": false                      //true or false, true = all clothing unlocked and free
 }
