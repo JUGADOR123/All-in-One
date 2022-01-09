@@ -4,47 +4,52 @@ exports.mod = () => {
     const config = require("../config.js");
 
     //Load Globals
-    let base = db.base ? db.base : db.cacheBase;
-	let globals = fileIO.readParsed(base.globals);
-	let globalsCopy = internal.path.resolve(__dirname, "globals.json");
-    
+    let base = db.base ? db.base : db.cacheBase;  //reads either base or cacheBase as base, AE/JET compatibility
+	let globals = fileIO.readParsed(base.globals); //reads servers globals.json to memory
+	let globalsCopy = internal.path.resolve(__dirname, "globals.json"); //makes copy of globals.json and saves to mod src
+    //Rebirth compatibility
+    if (server.version == "0.12.4-1012-Dev"){ 
+        globalsPath = globals.config
+    }
+    else globalsPath = globals.data.config;
+
     //Player Scav Timer
     if (config.ScavTimer != false) {
-        globals.data.SavagePlayCooldown = config.ScavTimer;
-        globals.data.SavagePlayCooldownNdaFree = config.ScavTimer;
+        globalsPath.SavagePlayCooldown = config.ScavTimer;
+        globalsPath.SavagePlayCooldownNdaFree = config.ScavTimer;
     } else {
         //if timer is false
-        globals.data.config.SavagePlayCooldown = 20;
-        globals.data.config.SavagePlayCooldownNdaFree = 20;
+        globalsPath.SavagePlayCooldown = 20;
+        globalsPath.SavagePlayCooldownNdaFree = 20;
     }
     //Infinite Stamina
     if (config.InfiniteStamina === true) {
-        globals.data.config.Stamina.Capacity = 1000;
-        globals.data.config.Stamina.SprintDrainRate = 0.1;
-        globals.data.config.Stamina.BaseRestorationRate = 1000;
-        globals.data.config.Stamina.JumpConsumption = 1;
-        globals.data.config.Stamina.GrenadeHighThrow = 1;
-        globals.data.config.Stamina.GrenadeLowThrow = 1;
-        globals.data.config.Stamina.AimDrainRate = 0.1;
-        globals.data.config.Stamina.OxygenCapacity = 1000;
-        globals.data.config.Stamina.OxygenRestoration = 1000;
+        globalsPath.Stamina.Capacity = 1000;
+        globalsPath.Stamina.SprintDrainRate = 0.1;
+        globalsPath.Stamina.BaseRestorationRate = 1000;
+        globalsPath.Stamina.JumpConsumption = 1;
+        globalsPath.Stamina.GrenadeHighThrow = 1;
+        globalsPath.Stamina.GrenadeLowThrow = 1;
+        globalsPath.Stamina.AimDrainRate = 0.1;
+        globalsPath.Stamina.OxygenCapacity = 1000;
+        globalsPath.Stamina.OxygenRestoration = 1000;
     } else {
         //If infinite stamina is false
-        globals.data.config.Stamina.Capacity = 100;
-        globals.data.config.Stamina.SprintDrainRate = 4;
-        globals.data.config.Stamina.BaseRestorationRate = 5;
-        globals.data.config.Stamina.JumpConsumption = 16;
-        globals.data.config.Stamina.GrenadeHighThrow = 11;
-        globals.data.config.Stamina.GrenadeLowThrow = 8;
-        globals.data.config.Stamina.AimDrainRate = 1.3;
-        globals.data.config.Stamina.OxygenCapacity = 300;
-        globals.data.config.Stamina.OxygenRestoration = 4;
+        globalsPath.Stamina.Capacity = 100;
+        globalsPath.Stamina.SprintDrainRate = 4;
+        globalsPath.Stamina.BaseRestorationRate = 5;
+        globalsPath.Stamina.JumpConsumption = 16;
+        globalsPath.Stamina.GrenadeHighThrow = 11;
+        globalsPath.Stamina.GrenadeLowThrow = 8;
+        globalsPath.Stamina.AimDrainRate = 1.3;
+        globalsPath.Stamina.OxygenCapacity = 300;
+        globalsPath.Stamina.OxygenRestoration = 4;
     }
 
     //Load Gameplay
-    let gameplay = fileIO.readParsed(global.db.user.configs.gameplay);
-    let gameplayCopy = internal.path.resolve(__dirname, "gameplay.json")
-    //let locationloot = global._database.gameplayConfig.locationloot;
+    let gameplay = fileIO.readParsed(global.db.user.configs.gameplay); //read gameplay.json into memory
+    let gameplayCopy = internal.path.resolve(__dirname, "gameplay.json") //makes copy of gameplay.json and saves to mod src
+    //let locationloot = global._database.gameplayConfig.locationloot; //noted out due to improper path
     //Loot modifiers
     if (config.locationloot.CustomLoot === true) {
 
@@ -217,11 +222,11 @@ exports.mod = () => {
             fileIO.write('user/cache/assort_' + traders[trader], shop)
         }
     }
-    base.globals = globalsCopy;
-    global.db.user.configs.gameplay = gameplayCopy; 
-	fileIO.write(globalsCopy, globals);
-    fileIO.write(gameplayCopy, gameplay);
-    fileIO.write("user/cache/db.json", db);
+    base.globals = globalsCopy; //changes the db's filepath to the modified copy, rather than original
+    global.db.user.configs.gameplay = gameplayCopy; //changes the db's filepath to the modified copy, rather than original
+	fileIO.write(globalsCopy, globals); //writes changes to globals copy 
+    fileIO.write(gameplayCopy, gameplay); //writes changes to gameplay copy 
+    fileIO.write("user/cache/db.json", db); //writes to the db the changes to filepath, pointing to the copies instead of originals
     fileIO.write(`user/cache/locations.json`, mapfile);
     fileIO.write(`user/cache/items.json`, itemsFile);
     fileIO.write(`user/cache/hideout_areas.json`, hareas);
