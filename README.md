@@ -1,10 +1,12 @@
 # All-in-One
 All in one mod for Jet 12.8 and forwards
 9-Jan-2022 Update 2.2.0
+
 	-fixed some global stuff -Estarn
 	-fixed fast bitcoin production -Jug
 
 28-feb-2021 Update 2.1.0
+
 	-Rewrote everything to work with 12.9
 	-Now all settings are applied instantly
 
