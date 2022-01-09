@@ -3,6 +3,78 @@ exports.mod = () => {
     //Load Settings
     const config = require("../config.js");
 
+    //Load Globals
+    let base = db.base ? db.base : db.cacheBase;
+	let globals = fileIO.readParsed(base.globals);
+	let globalsCopy = internal.path.resolve(__dirname, "globals.json");
+    
+    //Player Scav Timer
+    if (config.ScavTimer != false) {
+        globals.data.SavagePlayCooldown = config.ScavTimer;
+        globals.data.SavagePlayCooldownNdaFree = config.ScavTimer;
+    } else {
+        //if timer is false
+        globals.data.config.SavagePlayCooldown = 20;
+        globals.data.config.SavagePlayCooldownNdaFree = 20;
+    }
+    //Infinite Stamina
+    if (config.InfiniteStamina === true) {
+        globals.data.config.Stamina.Capacity = 1000;
+        globals.data.config.Stamina.SprintDrainRate = 0.1;
+        globals.data.config.Stamina.BaseRestorationRate = 1000;
+        globals.data.config.Stamina.JumpConsumption = 1;
+        globals.data.config.Stamina.GrenadeHighThrow = 1;
+        globals.data.config.Stamina.GrenadeLowThrow = 1;
+        globals.data.config.Stamina.AimDrainRate = 0.1;
+        globals.data.config.Stamina.OxygenCapacity = 1000;
+        globals.data.config.Stamina.OxygenRestoration = 1000;
+    } else {
+        //If infinite stamina is false
+        globals.data.config.Stamina.Capacity = 100;
+        globals.data.config.Stamina.SprintDrainRate = 4;
+        globals.data.config.Stamina.BaseRestorationRate = 5;
+        globals.data.config.Stamina.JumpConsumption = 16;
+        globals.data.config.Stamina.GrenadeHighThrow = 11;
+        globals.data.config.Stamina.GrenadeLowThrow = 8;
+        globals.data.config.Stamina.AimDrainRate = 1.3;
+        globals.data.config.Stamina.OxygenCapacity = 300;
+        globals.data.config.Stamina.OxygenRestoration = 4;
+    }
+
+    //Load Gameplay
+    let gameplay = fileIO.readParsed(global.db.user.configs.gameplay);
+    let gameplayCopy = internal.path.resolve(__dirname, "gameplay.json")
+    //let locationloot = global._database.gameplayConfig.locationloot;
+    //Loot modifiers
+    if (config.locationloot.CustomLoot === true) {
+
+        //Overlap Loot
+        if (config.locationloot.overlappingLoot === true) {
+            gameplay.locationloot.allowLootOverlap = true;
+        } else {
+            gameplay.locationloot.allowLootOverlap = false;
+        }
+        //Per map loot
+        gameplay.locationloot.bigmap = config.locationloot.Custom;
+        gameplay.locationloot.factory4_day = config.locationloot.Factory;
+        gameplay.locationloot.factory4_night = config.locationloot.Factory;
+        gameplay.locationloot.interchange = config.locationloot.Interchange;
+        gameplay.locationloot.laboratory = config.locationloot.Labs;
+        gameplay.locationloot.rezervbase = config.locationloot.Reserve;
+        gameplay.locationloot.shoreline = config.locationloot.Shoreline;
+        gameplay.locationloot.woods = config.locationloot.Woods;
+        //Loot Containers
+        gameplay.locationloot.containers.ChanceForEmpty = config.locationloot.containers.ChanceForEmpty;
+        gameplay.locationloot.containers.ChanceToSpawnNextItem = config.locationloot.containers.ChanceToSpawnNextItem;
+        gameplay.locationloot.containers.AttemptsToPlaceLoot = config.locationloot.containers.AttemptsToPlaceLoot;
+        gameplay.locationloot.containers.Not_exist = config.locationloot.containers.RarityMultipliers.Not_exist;
+        gameplay.locationloot.containers.Common = config.locationloot.containers.RarityMultipliers.Common;
+        gameplay.locationloot.containers.Rare = config.locationloot.containers.RarityMultipliers.Rare;
+        gameplay.locationloot.containers.Superrare = config.locationloot.containers.RarityMultipliers.Superrare;
+    } else {
+        logger.logError("[All in One v2] CustomLoot setting is disabled, ignoring loot settings")
+    }
+
     //Load Cache Stuff
     //Items
     let itemsFile = fileIO.readParsed(`user/cache/items.json`);
@@ -145,7 +217,11 @@ exports.mod = () => {
             fileIO.write('user/cache/assort_' + traders[trader], shop)
         }
     }
-
+    base.globals = globalsCopy;
+    global.db.user.configs.gameplay = gameplayCopy; 
+	fileIO.write(globalsCopy, globals);
+    fileIO.write(gameplayCopy, gameplay);
+    fileIO.write("user/cache/db.json", db);
     fileIO.write(`user/cache/locations.json`, mapfile);
     fileIO.write(`user/cache/items.json`, itemsFile);
     fileIO.write(`user/cache/hideout_areas.json`, hareas);

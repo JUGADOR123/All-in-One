@@ -4,7 +4,7 @@
     "version": "2.1.4",
     "license": "MIT",
     "src": {
-        "src/tamper.js": "TamperModLoad",
-        "src/Cached.js": "CacheModLoad"
-    }
+        "src/cachemod.js": "CacheModLoad"
+    },
+    "required": []
 }
