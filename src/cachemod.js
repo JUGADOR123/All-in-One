@@ -178,7 +178,7 @@ exports.mod = () => {
     //Only Crafting
     if (config.FastProduction === true && config.FastBitcoin === false) {
         for (let area in hprod.data) {
-            if (hprod.data._id != "5d5c205bd582a50d042a3c0e") {
+            if (hprod.data[area]._id != "5d5c205bd582a50d042a3c0e") {
                 hprod.data[area].productionTime = 5;
             }
         }
@@ -186,7 +186,7 @@ exports.mod = () => {
     //Only Bitcoin
     if (config.FastProduction === false && config.FastBitcoin === true) {
         for (let area in hprod.data) {
-            if (hprod.data._id === "5d5c205bd582a50d042a3c0e") {
+            if (hprod.data[area]._id === "5d5c205bd582a50d042a3c0e") {
                 hprod.data[area].productionTime = 5;
             }
         }
